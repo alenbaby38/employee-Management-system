@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center h-100" style="margin-top: 12%;">
+  <div class="card shadow p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-4">View Employee DSR</h2>
+
+    <div class="mb-3">
+      <label for="username" class="form-label">Enter Employee Username:</label>
+      <input
+        id="username"
+        type="text"
+        class="form-control"
+        [(ngModel)]="username"
+        (keyup.enter)="goToUserDSR()"
+        placeholder="e.g. john.doe"
+      />
+    </div>
+
+    <div class="d-grid mb-3">
+      <button class="btn btn-primary" (click)="goToUserDSR()">Go</button>
+    </div>
+
+    <p *ngIf="error" class="text-danger text-center mb-3">{{ error }}</p>
+
+    <div *ngIf="dsrs.length > 0" class="mt-4">
+      <h4 class="mb-3 text-center">DSRs for <span class="text-primary">{{ username }}</span></h4>
+      <div *ngFor="let dsr of dsrs" class="mb-4 p-3 border rounded shadow-sm bg-light">
+        <p class="mb-2"><strong>Date:</strong> {{ dsr.date }}</p>
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let entry of dsr.entries" class="list-group-item px-2">
+            Task ID: <span class="fw-bold">{{ entry.taskId }}</span> — {{ entry.minutesSpent }} minutes
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

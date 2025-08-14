@@ -1,0 +1,58 @@
+.toast-top-right {
+  top: 70px !important; /* Adjust this value as needed */
+  right: 18px;
+}
+
+.e-grid .e-toolbar {
+  justify-content: flex-start; /* Aligns buttons to the left */
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.e-toolbar-item .e-tbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* styles.css */
+
+.wrapper {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #343a40;
+  transition: all 0.3s;
+  height: auto;
+}
+
+#sidebar .components a {
+  padding: 10px;
+  font-size: 1rem;
+  display: block;
+  color: #ffffff;
+  border-radius: 4px;
+  transition: 0.2s;
+ text-decoration: none  !important;
+}
+
+#sidebar .components a:hover {
+  background: #495057;
+  text-decoration: none;
+}
+
+.wrapper.toggled #sidebar {
+  margin-left: -250px;
+}
+
+#content {
+  width: 100%;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

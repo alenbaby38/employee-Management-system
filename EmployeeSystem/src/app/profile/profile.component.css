@@ -1,0 +1,129 @@
+body{
+  background-color: #e2f5f088;
+}
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align at top */
+  padding-top: 8vh;        /* Push down by 8% viewport height */
+  height: 100vh;
+background-color: #e2f5f088;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+.profile-details {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  padding: 3rem 3.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-details:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.35);
+}
+
+.profile-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 0 auto 2rem;
+  object-fit: cover;
+  border: 6px solid #667eea;
+  box-shadow: 0 0 15px #764ba2aa;
+  background-color: #f9f9fb;
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-avatar:hover {
+  box-shadow: 0 0 25px #764ba2ff;
+}
+
+.profile-details h2 {
+  font-weight: 800;
+  font-size: 2.8rem;
+  margin-bottom: 2rem;
+  color: #5a3e99;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px #b3a7d9;
+}
+
+.profile-details p {
+  font-size: 1.2rem;
+  margin: 1.2rem 0;
+}
+
+.profile-details strong {
+  color: #5a3e99;
+  font-weight: 700;
+  margin-right: 0.4rem;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: inset 1px 1px 5px #f0f0f0;
+}
+
+input[type="email"]:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 8px #667eea88;
+}
+
+.btn {
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.6rem 2.2rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6);
+}
+
+.btn-primary {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #5a6edc;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.9);
+}
+
+.btn-success {
+  background-color: #38b000;
+  color: white;
+  box-shadow: 0 4px 15px rgba(56, 176, 0, 0.6);
+}
+
+.btn-success:hover {
+  background-color: #2e8e00;
+  box-shadow: 0 6px 20px rgba(56, 176, 0, 0.9);
+}
+
+.btn-secondary {
+  background-color: #777;
+  color: white;
+  box-shadow: 0 4px 15px rgba(119, 119, 119, 0.6);
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+  box-shadow: 0 6px 20px rgba(119, 119, 119, 0.9);
+}
+
+.mt-3 {
+  margin-top: 1.5rem !important;
+}

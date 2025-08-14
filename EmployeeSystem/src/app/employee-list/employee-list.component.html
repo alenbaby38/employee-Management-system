@@ -1,0 +1,22 @@
+<ejs-grid
+[filterSettings]="filterOptions"
+[allowFiltering]="true"
+[groupSettings]="groupsetting"
+  [dataSource]="employees"
+  [allowPaging]="true"
+  [allowSorting]="true"
+  [allowGrouping]="true"
+  [pageSettings]="pageSettings"
+  [editSettings]="editSettings"
+  [toolbar]="toolbar"
+  (actionBegin)="onActionBegin($event)"
+  [allowSelection]="true"
+  [selectionSettings]="{ type: 'Single' }"
+  height="350px"
+>
+  <e-columns>
+    <e-column field="username" headerText="Username" isPrimaryKey="true" width="150"></e-column>
+    <e-column field="email" headerText="Email" width="200"></e-column>
+    <e-column field="role" headerText="Role" width="120"></e-column>
+  </e-columns>
+</ejs-grid>

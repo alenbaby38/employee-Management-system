@@ -1,0 +1,23 @@
+<div class="email-parser-container">
+  <h2>Parse Email</h2>
+
+  <textarea
+    [(ngModel)]="rawEmail"
+    rows="8"
+    placeholder="Paste raw email here..."
+  ></textarea>
+
+  <button (click)="parseEmail()" [disabled]="loading">
+    {{ loading ? 'Parsing...' : 'Parse Email' }}
+  </button>
+
+  <div *ngIf="errorMessage" class="error-message">
+    Error: {{ errorMessage }}
+  </div>
+
+  <div *ngIf="parsedEmail" class="parsed-email">
+    <h3>Parsed Email</h3>
+    <p><strong>Subject:</strong> {{ parsedEmail.subject }}</p>
+    <p><strong>Body:</strong> {{ parsedEmail.body }}</p>
+  </div>
+</div>

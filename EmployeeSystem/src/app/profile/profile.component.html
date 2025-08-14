@@ -1,0 +1,28 @@
+<div class="profile-container">
+  <div class="profile-details">
+    <img 
+      src="https://cdn-icons-png.flaticon.com/512/147/147144.png" 
+      alt="Profile Avatar" 
+      class="profile-avatar"
+    />
+    <h2>My Profile</h2>
+
+    <p><strong>Username:</strong> {{ profile.username }}</p>
+
+    <p>
+      <strong>Email:</strong>
+      <span *ngIf="!editMode">{{ profile.email }}</span>
+      <input *ngIf="editMode" type="email" [(ngModel)]="editProfile.email" class="form-control" />
+    </p>
+
+    <p *ngIf="profile.role"><strong>Role:</strong> {{ profile.role | titlecase }}</p>
+
+    <button class="btn btn-primary mt-3" (click)="toggleEdit()" *ngIf="!editMode">
+      Edit Profile
+    </button>
+    <div *ngIf="editMode" class="mt-3">
+      <button class="btn btn-success me-2" (click)="saveProfile()">Save</button>
+      <button class="btn btn-secondary" (click)="toggleEdit()">Cancel</button>
+    </div>
+  </div>
+</div>

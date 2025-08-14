@@ -1,0 +1,50 @@
+<div style="background-color: rgb(93, 113, 124); align-items: center;justify-content: center;">
+
+<button class="e-btn mt-4 " style="margin-right: 8px;margin-bottom: 6px; " (click)="addSheet()">add sheet</button>
+<button class="e-btn mt-4" style="margin-right: 8px;margin-bottom: 6px;" (click)="MoveSheet()">move sheet</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="deleteSheet()">delete sheet</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="duplicateSheet()">duplicate</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="EditSheet()">Edit</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="saveSheet()">save changes</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="closeSheet()">discard edit</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="validateSheet()">validate</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="removeValidateSheet()">remove validate</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="currencyFormat()">currencyformat</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="savefile()">save file</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="deleteImage()">Delete Image</button>
+<button class="e-btn mt-4"style="margin-right: 8px;margin-bottom: 6px;" (click)="addImage()">Add Image</button>
+
+</div>
+<ejs-spreadsheet #Spreadsheetadd (created)="oncreate()" (cellEdit)="onCelledit($event)" openUrl="https://services.syncfusion.com/angular/production/api/spreadsheet/open"
+saveUrl="https://services.syncfusion.com/angular/production/api/spreadsheet/save">
+    <e-sheets>
+     <!--<e-sheet name="product / country sheet" [frozenColumns]="2" [frozenRows]="1">-->   
+             <e-sheet name="product / country sheet">
+            <e-ranges>
+                <e-range [dataSource]="data"></e-range>
+            </e-ranges>
+            <e-rows>
+                <e-row index="8" [style]="cellstyle">
+                    <e-cells>
+                          <e-cell index="3" formula='="Total: "&SUM(D2:D8)' [style]="cellstyle"></e-cell>
+                        <e-cell  formula='="Total: "&SUM(E2:E8)' [style]="cellstyle"></e-cell>
+                        
+                    </e-cells>
+                
+                </e-row>
+            </e-rows>
+            <e-conditionalformats>
+                <e-conditionalformat type="LessThan" cFColor="YellowFT" value="15" range="E2:E8" ></e-conditionalformat>
+                <e-conditionalformat type="GreaterThan" cFColor="GreenFT" value="14" range="E2:E8"></e-conditionalformat>
+            </e-conditionalformats>
+            <e-columns>
+                <e-column [width]="100"></e-column>
+                <e-column [width]="100"></e-column>
+                <e-column [width]="100"></e-column>
+                <e-column [width]="100"></e-column>
+                <e-column [width]="100"></e-column>
+            </e-columns>
+
+        </e-sheet>
+    </e-sheets>
+</ejs-spreadsheet>

@@ -1,0 +1,24 @@
+<div class="chatbot-wrapper">
+  <button class="chatbot-toggle-btn" (click)="toggleChatbot()">💬</button>
+
+  <div class="chatbot-container" [ngClass]="{ 'open': isChatOpen }">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center bg-dark text-white">
+        <span>Smart Bot 🤖</span>
+        <button class="btn btn-sm btn-light" (click)="toggleChatbot()">×</button>
+      </div>
+
+      <div class="card-body chatbot-body">
+        <div *ngFor="let message of messages" class="message" [ngClass]="message.sender">
+          <strong class="sender">{{ getSenderName(message.sender) }}</strong>
+          <div [innerHTML]="formatMessage(message.text)" class="message-text"></div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <input [(ngModel)]="userMessage" class="form-control" placeholder="Type your message..." (keydown.enter)="sendMessage()" />
+        <button class="btn btn-primary mt-2 float-end" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

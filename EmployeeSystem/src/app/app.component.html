@@ -1,0 +1,101 @@
+<div class="wrapper d-flex" [class.toggled]="isToggled">
+  <!-- Sidebar -->
+  <nav id="sidebar" class="bg-dark text-white">
+    <div class="sidebar-header text-center py-4">
+      <h4>EMS</h4>
+    </div>
+    <ul class="list-unstyled components px-2">
+
+      <!-- Employee Section -->
+      <li *ngIf="role === 'EMPLOYEE'">
+        <a [routerLink]="['/employee-dashboard']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>dashboard</mat-icon>
+          Employee Dashboard
+        </a>
+      </li>
+
+      <!-- Manager Section -->
+      <li *ngIf="role === 'MANAGER'">
+        <a [routerLink]="['/manager-dashboard']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>dashboard</mat-icon>
+          Manager Dashboard
+        </a>
+        <li *ngIf="role === 'MANAGER'">
+        <a [routerLink]="['/email-sender']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>email</mat-icon>
+          Send email
+        </a>
+        <a [routerLink]="['/pivot']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>table_chart</mat-icon>
+          Pivot
+        </a>
+        <a [routerLink]="['/sheet']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>grid_on</mat-icon>
+          Sheet
+        </a>
+        <a [routerLink]="['/gantt']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>timeline</mat-icon>
+          Gantt Chart
+        </a>
+        <a [routerLink]="['/employeelist']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>people</mat-icon>
+          Employee List
+        </a>
+        <a [routerLink]="['/viewdsr']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>description</mat-icon>
+          View DSR
+        </a>
+        <a [routerLink]="['/projectlist']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>folder_open</mat-icon>
+          Project List
+        </a>
+        <a [routerLink]="['/createproject']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>add_box</mat-icon>
+          Create Project
+        </a>
+      </li>
+
+      <!-- Employee Extras -->
+      <li *ngIf="role === 'EMPLOYEE'">
+        <a [routerLink]="['/email']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>email</mat-icon>
+          Email
+        </a>
+        <a [routerLink]="['/DSR']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>post_add</mat-icon>
+          Add DSR
+        </a>
+      </li>
+
+      <!-- Common Section -->
+      <li *ngIf="role">
+        <a [routerLink]="['/profile']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>account_circle</mat-icon>
+          Profile
+        </a>
+        <a [routerLink]="['/excel']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>grid_view</mat-icon>
+          Excel
+        </a>
+        <a [routerLink]="['/logout']" style="display: flex; align-items: center; gap: 6px;">
+          <mat-icon>logout</mat-icon>
+          Logout
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content" class="flex-grow-1">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <button class="btn btn-dark me-2" (click)="toggleSidebar()">
+        <i class="bi bi-list"></i>
+      </button>
+      <span class="navbar-brand">Employee Management System</span>
+    </nav>
+    <div class="container-fluid mt-3">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

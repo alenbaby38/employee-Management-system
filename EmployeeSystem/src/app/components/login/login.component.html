@@ -1,0 +1,51 @@
+<div style="margin-top: 8.5%;"></div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Login</h2>
+
+          <form (ngSubmit)="login()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                [(ngModel)]="username"
+                name="email"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                [(ngModel)]="password"
+                name="password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+
+          <div *ngIf="error" class="alert alert-danger mt-3 text-center">
+            {{ error }}
+          </div>
+
+          <div class="text-center mt-4">
+            <p>Don't have an account?</p>
+            <a [routerLink]="['/register']" class="btn btn-outline-primary">Register</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-oauth2></app-oauth2>

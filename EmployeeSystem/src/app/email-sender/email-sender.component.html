@@ -1,0 +1,60 @@
+<div class="email-container">
+  <h2>Send Custom Email</h2>
+  
+  <form (ngSubmit)="sendEmail()" #emailForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="to">To:</label>
+      <input 
+        id="to" 
+        name="to" 
+        type="email"
+        [(ngModel)]="emailRequest.to" 
+        required 
+        email 
+        placeholder="recipient@example.com"
+        #to="ngModel"
+        [class.invalid]="emailForm.submitted && to.invalid"
+      />
+      <div class="error" *ngIf="emailForm.submitted && to.invalid">
+        Please enter a valid email.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject:</label>
+      <input 
+        id="subject" 
+        name="subject" 
+        [(ngModel)]="emailRequest.subject" 
+        required 
+        placeholder="Email subject"
+        #subject="ngModel"
+        [class.invalid]="emailForm.submitted && subject.invalid"
+      />
+      <div class="error" *ngIf="emailForm.submitted && subject.invalid">
+        Subject is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="body">Body:</label>
+      <textarea 
+        id="body" 
+        name="body" 
+        [(ngModel)]="emailRequest.body" 
+        rows="5" 
+        required 
+        placeholder="Write your message here..."
+        #body="ngModel"
+        [class.invalid]="emailForm.submitted && body.invalid"
+      ></textarea>
+      <div class="error" *ngIf="emailForm.submitted && body.invalid">
+        Body is required.
+      </div>
+    </div>
+
+    <button type="submit">Send Email</button>
+  </form>
+
+  <p class="message" *ngIf="message">{{ message }}</p>
+</div>

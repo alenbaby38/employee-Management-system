@@ -1,0 +1,65 @@
+<div style="align-items: center; justify-content: center; margin-top: 8%;"  class="container mt-4">
+  <app-create-project></app-create-project>
+  <h2 class="text-primary border-bottom pb-2 mb-3">📋 Project Details</h2>
+
+  <div *ngIf="projects.length === 0" class="alert alert-info">
+    🚫 No projects found.
+  </div>
+
+  <ejs-grid
+    [dataSource]="projects"
+    [allowPaging]="true"
+    [pageSettings]="{ pageSize: 5 }"
+    [allowGrouping]="true"
+     [allowSorting]="true"
+     [allowPaging]="true"
+     [allowFiltering]="true"
+    [detailTemplate]="taskDetail"
+    height="400"
+    class="e-grid-hover">
+    
+    <e-columns>
+      <e-column field="name" headerText="Project Name" width="150"></e-column>
+      <e-column field="description" headerText="Description" width="250"></e-column>
+      <e-column headerText="Assigned To" width="200" [template]="assignedTemplate"></e-column>
+    </e-columns>
+  </ejs-grid>
+
+  <!-- Detail Template (Tasks) -->
+  <ng-template #taskDetail let-data>
+    <div *ngIf="data.tasks.length > 0">
+      <h6 class="mt-2 mb-2">🛠️ Tasks:</h6>
+      <table class="table table-sm table-bordered">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of data.tasks">
+            <td>{{ task.title }}</td>
+            <td>{{ task.assignedTo }}</td>
+            <td>
+              <span class="e-badge" [ngClass]="getStatusClass(task.status)">
+                {{ task.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="data.tasks.length === 0" class="text-muted">
+      <em>No tasks assigned.</em>
+    </div>
+  </ng-template>
+
+  <!-- Assigned Users Template -->
+  <ng-template #assignedTemplate let-data>
+    <span *ngIf="data.assignedTo.length > 0">
+      <span class="badge bg-secondary me-1" *ngFor="let user of data.assignedTo">{{ user }}</span>
+    </span>
+    <span *ngIf="data.assignedTo.length === 0">None</span>
+  </ng-template>
+</div>

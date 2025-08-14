@@ -1,0 +1,142 @@
+<div class="container d-flex justify-content-center" style=" min-height: 45vh;">
+
+  <div
+    class="card shadow-sm p-2 mt-4"
+    style="max-width: 460px; width: 100%; border-radius: 10px;"
+  >
+    <h2 class="mb-2 text-center text-primary fw-bold" style="font-size: 1.5rem;">
+      Create Project
+    </h2>
+
+    <form (ngSubmit)="createProject()" novalidate>
+      <div class="mb-2">
+        <label for="name" class="form-label fw-semibold" style="font-size: 0.9rem;"
+          >Project Name <span class="text-danger">*</span></label
+        >
+        <input
+          id="name"
+          type="text"
+          class="form-control form-control-sm shadow-sm"
+          [(ngModel)]="name"
+          name="name"
+          required
+          placeholder="Enter project name"
+          style="height: 34px; font-size: 0.9rem;"
+        />
+      </div>
+
+      <div class="mb-2">
+        <label for="description" class="form-label fw-semibold" style="font-size: 0.9rem;">Description</label>
+        <textarea
+          id="description"
+          class="form-control shadow-sm"
+          rows="2"
+          [(ngModel)]="description"
+          name="description"
+          placeholder="Add a brief description"
+          style="font-size: 0.9rem;"
+        ></textarea>
+      </div>
+
+      <div class="mb-2">
+        <label for="assignedTo" class="form-label fw-semibold" style="font-size: 0.85rem;">
+          Assigned Employees
+          <small class="text-muted" style="font-size: 0.75rem;">(comma separated usernames)</small>
+        </label>
+        <input
+          id="assignedTo"
+          type="text"
+          class="form-control form-control-sm shadow-sm"
+          [(ngModel)]="assignedTo"
+          name="assignedTo"
+          placeholder="e.g. john, alice, bob"
+          style="height: 34px; font-size: 0.9rem;"
+        />
+      </div>
+
+      <hr class="mb-2" />
+
+      <h5 class="mb-1 text-secondary fw-bold" style="font-size: 1rem;">Tasks</h5>
+
+      <div
+        *ngFor="let task of tasks; let i = index"
+        class="border rounded p-2 mb-2 bg-light shadow-sm"
+      >
+        <div class="row g-1 align-items-center">
+          <div class="col-md-5">
+            <label class="form-label fw-semibold" style="font-size: 0.85rem;">Task Title</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="task.title"
+              [name]="'taskTitle' + i"
+              required
+              placeholder="Task title"
+              style="font-size: 0.9rem; height: 30px;"
+            />
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold" style="font-size: 0.85rem;">Assigned To</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="task.assignedTo"
+              [name]="'taskAssignedTo' + i"
+              required
+              placeholder="Username"
+              style="font-size: 0.9rem; height: 30px;"
+            />
+          </div>
+          <div class="col-md-3">
+            <label class="form-label fw-semibold" style="font-size: 0.85rem;">Status</label>
+            <select
+              class="form-select form-select-sm"
+              [(ngModel)]="task.status"
+              [name]="'taskStatus' + i"
+              required
+              style="font-size: 0.9rem; height: 30px;"
+            >
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="completed">completed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="text-end mt-1">
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            (click)="removeTask(i)"
+            title="Remove this task"
+            style="font-size: 0.75rem; padding: 0.2rem 0.5rem;"
+          >
+            Remove Task
+          </button>
+        </div>
+      </div>
+
+      <div class="mb-2 text-center">
+        <button type="button" class="btn btn-outline-primary btn-sm" (click)="addTask()" style="font-size: 0.9rem;">
+          + Add Task
+        </button>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary w-100 fw-semibold"
+        [disabled]="loading"
+        style="font-size: 1rem; padding: 0.375rem 0;"
+      >
+        {{ loading ? 'Creating...' : 'Create Project' }}
+      </button>
+
+      <div *ngIf="message" class="alert alert-success mt-2 text-center fw-semibold" style="font-size: 0.9rem;">
+        {{ message }}
+      </div>
+      <div *ngIf="error" class="alert alert-danger mt-2 text-center fw-semibold" style="font-size: 0.9rem;">
+        {{ error }}
+      </div>
+    </form>
+  </div>
+</div>

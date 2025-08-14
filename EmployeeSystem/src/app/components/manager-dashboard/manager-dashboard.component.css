@@ -1,0 +1,156 @@
+.dashboard-summary {
+  max-width: 1400px;
+  background: #ffffff; /* pure white for minimal clean look */
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  margin: auto;
+  margin-top: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+}
+
+/* Card base styles */
+.card {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f9faff; /* very light neutral background */
+  color: #2c3e50;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.02);
+}
+
+/* Card icons */
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  color: #4a90e2; /* soft blue accent */
+}
+
+/* Different card colors - subtle pastel tints */
+.card.text-primary {
+  background-color: #e8f0fe; /* light pastel blue */
+  color: #2c3e50;
+}
+.card.text-success {
+  background-color: #e6f4ea; /* light pastel green */
+  color: #2c3e50;
+}
+.card.text-info {
+  background-color: #e4f0f8; /* pastel cyan */
+  color: #2c3e50;
+}
+.card.text-warning {
+  background-color: #fff4e6; /* softer pastel orange/yellow */
+  color: #2c3e50;           /* consistent dark text */
+}
+.card.text-warning .card-icon {
+  color: #f0a500; /* warm but soft orange accent */
+}
+.card.text-danger {
+  background-color: #fdecea; /* light pastel red */
+  color: #2c3e50;
+}
+
+/* Headings */
+h5 {
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #34495e;
+}
+
+/* Large numbers */
+p.fs-3 {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #34495e;
+  margin: 0;
+}
+
+/* Top performer row */
+.top-performer {
+  background-color: #dbefff; /* very subtle blue highlight */
+  font-weight: 700;
+  border-left: 4px solid #4a90e2; /* blue accent bar */
+  transition: background-color 0.3s ease;
+}
+.top-performer:hover {
+  background-color: #c2dbff;
+}
+
+/* DSR card */
+.dsr-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  color: #2c3e50;
+}
+
+/* Table */
+.dsr-table thead {
+  background-color: #f0f4f9;
+  color: #34495e;
+  font-weight: 600;
+  border-bottom: 2px solid #d3dce6;
+}
+.dsr-table tbody tr:hover {
+  background-color: #f9fbff;
+}
+.dsr-table tbody td {
+  vertical-align: middle;
+}
+
+/* Charts container cards */
+.stacked-bar-card, 
+.pie-chart-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 1.75rem;
+  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Chart titles */
+.stacked-bar-card h5,
+.pie-chart-card h5 {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+/* Pie chart container */
+#pie-chart {
+  width: 100%;
+  max-width: 280px;
+  margin: auto;
+}
+
+/* Responsive spacing tweaks */
+@media (max-width: 991px) {
+  .dashboard-summary .row > .col-lg-4,
+  .dashboard-summary .row > .col-lg-8,
+  .dashboard-summary .col-12 {
+    margin-bottom: 1.8rem;
+  }
+
+  .stacked-bar-card,
+  .pie-chart-card {
+    min-height: 300px;
+  }
+}

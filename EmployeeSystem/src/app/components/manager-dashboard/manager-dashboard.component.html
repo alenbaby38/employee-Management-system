@@ -1,0 +1,162 @@
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<div class="dashboard-summary container">
+  <div *ngIf="!loading && !error" class="row gx-4 gy-4 align-items-start">
+
+    <!-- KPI Cards -->
+    <div class="col-12">
+      <div class="row g-3">
+        <div class="col-sm-6 col-lg-4">
+       <a [routerLink]="['/employeelist']" style="text-decoration: none">
+          <div class="card text-center p-3 h-100 text-primary">
+            <i class="fas fa-users card-icon"></i>
+            <h5>Total Employees</h5>
+            <p class="fs-3">{{ employeeCount }}</p>
+          </div>
+          </a>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="card text-center p-3 h-100 text-success">
+            <i class="fas fa-user-tie card-icon"></i>
+            <h5>Total Managers</h5>
+            <p class="fs-3">{{ managerCount }}</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+          <div class="card text-center p-3 h-100 text-info">
+            <i class="fas fa-user card-icon"></i>
+            <h5>Employees</h5>
+            <p class="fs-3">{{ normalEmployeeCount }}</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-6">
+          <div class="card text-center p-3 h-100 text-warning">
+            <i class="fas fa-hourglass-half card-icon"></i>
+            <h5>Pending Tasks</h5>
+            <p class="fs-3">{{ taskInCompletedCount }}</p>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-6">
+          <div class="card text-center p-3 h-100 text-success">
+            <i class="fas fa-check-circle card-icon"></i>
+            <h5>Completed Tasks</h5>
+            <p class="fs-3">{{ taskCompletedCount }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Top 5 Employees by DSR Time -->
+<div class="col-12 mt-4">
+  <div class="card p-4 dsr-card">
+    <h5 class="mb-4 text-primary">
+      <i class="fas fa-stopwatch me-2"></i>Top 5 Employees by DSR Time
+    </h5>
+    <div *ngIf="topemployees && topemployees.length > 0; else noData">
+      <div class="table-responsive">
+        <table class="table table-hover table-borderless align-middle text-center dsr-table">
+          <thead class="table-primary">
+            <tr>
+              <th>s.no</th>
+              <th>Employee Username</th>
+              <th>Total Minutes Logged</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of topemployees; let i = index" [ngClass]="{ 'top-performer': i === 0 }">
+              <td><span class="badge bg-primary fs-6">{{ i + 1 }}</span></td>
+              <td class="fw-bold">{{ emp.userId }}</td>
+              <td class="text-success fs-5">{{ emp.totalMinutes }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noData>
+      <p class="text-muted">No DSR data available.</p>
+    </ng-template>
+  </div>
+</div>
+
+    <!-- Bottom row: Bar chart (left) and Pie chart (right) -->
+   <!-- Bottom row: Bar chart (left) and Pie chart (right) -->
+<div class="col-12 mt-4">
+  <div class="row gx-4 gy-4 align-items-stretch">
+    <!-- Stacked Bar Graph -->
+    <div class="col-md-8">
+      <div class="card stacked-bar-card bg-light p-4 h-100">
+        <h5 class="mb-3"><i class="fas fa-chart-bar me-2"></i>{{ stackedBarTitle }}</h5>
+        <ejs-chart
+          id="stacked-bar"
+          height="400px"
+          [primaryXAxis]="stackedBarPrimaryXAxis"
+          [primaryYAxis]="stackedBarPrimaryYAxis"
+          [title]="stackedBarTitle"
+          [legendSettings]="legendSettings"
+          [tooltip]="tooltip"
+        >
+          <e-series-collection>
+            <e-series
+              [dataSource]="stackedBarData"
+              type="StackingBar"
+              xName="x"
+              yName="completed"
+              name="Completed"
+              fill="#663300"
+            ></e-series>
+            <e-series
+              [dataSource]="stackedBarData" 
+              type="StackingBar"
+              xName="x"
+              yName="incomplete"
+              name="Incomplete"
+              
+              fill="#999966"
+            ></e-series>
+          </e-series-collection>
+        </ejs-chart>
+      </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-md-4">
+      <div class="card pie-chart-card p-4 h-100">
+        <h5><i class="fas fa-chart-pie me-2"></i> Task Completion</h5>
+        <ejs-accumulationchart id="pie-chart" height="350px">
+          <e-accumulation-series-collection>
+            <e-accumulation-series innerRadius="40%"
+            [enableTooltip]="true"
+            tooltipMappingName="tooltip"
+              [dataSource]="pieChartDataTasks"
+              xName="x"
+              yName="y"
+              pointColorMapping="color"
+              type="Pie"
+              [dataLabel]="{
+                visible: true,
+                position: 'Outside',
+                name: 'x',
+                font: { color: '#2c3e50', fontWeight: '600' }
+              }"
+            ></e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<mat-card>
+  <mat-card-header></mat-card-header>
+  <img mat-card-image>
+  <mat-card-actions></mat-card-actions>
+</mat-card>
+  </div>
+</div>
+
+ <app-chatbot></app-chatbot>

@@ -1,0 +1,19 @@
+<div class="excel-container">
+  <h2>Import / Export Employees Excel</h2>
+
+  <div class="file-input-group">
+    <input type="file" (change)="onFileSelected($event)" accept=".xlsx" />
+    <button (click)="importFile()" [disabled]="loadingImport || !selectedFile">
+      {{ loadingImport ? 'Importing...' : 'Import Excel' }}
+    </button>
+  </div>
+
+  <div class="export-button">
+    <button (click)="exportFile()" [disabled]="loadingExport">
+      {{ loadingExport ? 'Exporting...' : 'Export Excel' }}
+    </button>
+  </div>
+
+  <div *ngIf="message" class="message success">{{ message }}</div>
+  <div *ngIf="errorMessage" class="message error">{{ errorMessage }}</div>
+</div>
